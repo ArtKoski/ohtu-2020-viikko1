@@ -135,7 +135,7 @@ public class VarastoTest {
     public void toStringTest() {
     	double saldo = varasto.getSaldo();
     	double tilaa = varasto.paljonkoMahtuu();
-    	assertEquals(varasto.toString(), "saldo = " + saldo + ", vielä tilaa" + tilaa);
+    	assertEquals(varasto.toString(), "saldo = " + saldo + ", vielä tilaa " + tilaa);
     }
     
 
