@@ -65,4 +65,78 @@ public class VarastoTest {
         assertEquals(4, varasto.paljonkoMahtuu(), vertailuTarkkuus);
     }
 
+    @Test
+    public void varastoTilavuusAlleNolla() {
+    	Varasto varasto = new Varasto(-5);
+    	assertEquals(varasto.getTilavuus(), 0.0, vertailuTarkkuus);
+    }
+    
+    @Test
+    public void konstruktori2TilaavuusYliNolla() {
+    	Varasto varasto2 = new Varasto(10, 5.0);
+        assertEquals(varasto2.getTilavuus(), 10.0, vertailuTarkkuus);
+        
+    }
+    
+    @Test
+    public void konstruktori2SaldoAlleTilavuuden() {
+    	Varasto varasto2 = new Varasto(10, 5.0);
+    	assertEquals(varasto2.getSaldo(), 5.0, vertailuTarkkuus);
+    	        
+    }
+    
+    @Test
+    public void konstruktori2TilavuusAlleNolla() {
+    	Varasto varasto2 = new Varasto(-10, 5.0);
+        assertEquals(varasto2.getTilavuus(), 0.0, vertailuTarkkuus);	        
+    }
+    
+    @Test
+    public void konstruktori2SaldoAlleNolla() {
+    	Varasto varasto2 = new Varasto(10, -5.0);
+        assertEquals(varasto2.getSaldo(), 0.0, vertailuTarkkuus);	        
+    }
+     
+    @Test
+    public void konstruktori2SaldoYliTilavuuden() {
+    	Varasto varasto2 = new Varasto(10, 15.0);
+        assertEquals(varasto2.getSaldo(), 10.0, vertailuTarkkuus);	        
+    }
+        
+    @Test
+    public void lisaaVarastoonAlleNolla() {
+    	double tmpr = varasto.getSaldo();
+    	varasto.lisaaVarastoon(-5);
+    	assertEquals(tmpr, varasto.getSaldo(), vertailuTarkkuus);
+    	
+    }
+    
+    @Test
+    public void otaVarastostaAlleNolla() {
+    	assertEquals(varasto.otaVarastosta(-5), 0.0, vertailuTarkkuus);
+    }
+    
+    @Test
+    public void lisaaVarastoonEnemmanKuinMahtuu() {
+    	double tmpr = varasto.paljonkoMahtuu();
+    	varasto.lisaaVarastoon((tmpr+2));
+    	assertEquals(varasto.getSaldo(), varasto.getTilavuus(), vertailuTarkkuus);	
+    }
+    
+    @Test
+    public void otaVarastostaKaikki() {
+    	double tmpr = varasto.getSaldo();
+    	assertEquals(
+    	    	varasto.otaVarastosta((varasto.getSaldo()+1)), tmpr, vertailuTarkkuus);
+    	
+    }
+    
+    @Test
+    public void toStringTest() {
+    	double saldo = varasto.getSaldo();
+    	double tilaa = varasto.paljonkoMahtuu();
+    	assertEquals(varasto.toString(), "saldo = " + saldo + ", vielä tilaa " + tilaa);
+    }
+    
+
 }
